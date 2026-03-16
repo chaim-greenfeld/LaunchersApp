@@ -6,9 +6,8 @@ export async function getAllLaunchers(req, res) {
 
         const collection = req.mongoConn.collection('launcher')
         const launchers = await collection.find().toArray()
-        console.log(launchers)
         if (launchers.length === 0) {
-            return res.status(200).json({ msg: "success", launchers: "not data in launchers" })
+            return res.status(200).json({ msg: "not data in launchers"})
         }
         return res.status(200).json({ msg: "success", launchers: launchers })
     } catch (err) {
@@ -41,6 +40,9 @@ export async function createLauncher(req, res) {
         const { city, rocketType, latitude, longitude, name } = req.body
         if (!city || !rocketType || !latitude || !longitude || !name) {
             return res.status(401).json({msg: "one of parameters is not found"})
+        }
+        if(latitude <=0 || longitude<=0){
+            return res.status(401).json({msg: "Both must be a number and greater than zero."})
         }
         const result = await collection.insertOne({
             city,

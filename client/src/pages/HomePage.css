@@ -1,0 +1,29 @@
+section {
+    margin: 25px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+article {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: rgb(156, 148, 148);
+
+}
+
+button {
+    background-color: rgba(112, 99, 99, 0.878);
+    color: yellow;
+}
+.search{
+    max-width: 420px;
+    display: flex;
+    margin:0 auto;
+    align-items: center;
+    gap: 10px;
+}
+.search > input {
+    height: 35px;
+}

@@ -1,0 +1,17 @@
+.onCard {
+    max-width: 750px;
+    margin:  auto ;
+    background-color: chartreuse;
+    border-radius: 15px;
+    padding: 2%;
+
+}
+
+.onCard > div {
+    margin: 2px;
+    display: flex;
+    gap: 5%;
+    justify-content:center ;
+    align-items: center;
+
+}

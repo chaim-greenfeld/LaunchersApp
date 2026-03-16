@@ -3,8 +3,8 @@ import { createLauncher, deleteByID, getAllLaunchers, getLauncherByID } from '..
 
 const router = Router()
 
-router.get('/', getAllLaunchers)
 router.get('/:id', getLauncherByID)
+router.get('/', getAllLaunchers)
 router.post('/', createLauncher)
 router.delete('/:id', deleteByID)
 
