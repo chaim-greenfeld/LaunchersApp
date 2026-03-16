@@ -51,7 +51,6 @@ function OneLauncher() {
                 throw new Error(data.msg)
             }
             setSuc("deleted successfuly")
-            alert("deleted launcher")
         } catch (err) {
             setErr(err.message)
             console.log(err)
@@ -66,6 +65,9 @@ function OneLauncher() {
         <>
 
             <div className="onCard">
+                <div>
+                    <h3>ID: </h3><p>{launcher._id}</p>
+                </div>
                 <div>
                     <h3>Name: </h3><p>{launcher.name}</p>
                 </div>

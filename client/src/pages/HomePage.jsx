@@ -35,6 +35,7 @@ function HomePage() {
       <label>type: </label>
       <input type="text" value={searchType} onChange={(e) => setsearchType(e.target.value)} placeholder="type"/>
     </div>
+    {<p>COUNT LAUNCHERS: {filterData.length}</p>}
 
      {isLoading && <p>Loading...</p>}
      {error2 && <p>{error2}</p>}
