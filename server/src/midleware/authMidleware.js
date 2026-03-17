@@ -7,6 +7,8 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 export function verifyToken(req, res, next) {
     try {
+       
+
         const token = req.cookies.token
         if(!token) {
             return res.status(401).json({msg: "no token"})
@@ -24,18 +26,16 @@ export function verifyToken(req, res, next) {
 }
 
 
-export function verifyAdmin(req, res, next) {
-    try {
-
-        const user = req.user
-        if(!user) {
-            return res.status(401).json({msg: "no token"})
-        }
-        if(user.user_type !== 'admin'){
-            return  res.status(401).json({msg: "you dont have permission"})
-        }
-        next()
-    }catch (err) {
-        return res.status(500).json({msg: err.message})
+export function allowRoles(...roles) {
+  return (req, res, next) => {
+    if (!req.user) {
+      return res.status(401).json({ message: "Unauthorized" });
     }
+
+    if (!roles.includes(req.user.user_type)) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    next();
+  };
 }

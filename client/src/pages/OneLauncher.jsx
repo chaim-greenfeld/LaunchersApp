@@ -16,7 +16,9 @@ function OneLauncher() {
         async function asas() {
             try {
                 setLoad(true)
-                const response = await fetch(`http://localhost:8000/api/launchers/${id}`)
+                const response = await fetch(`http://localhost:8000/api/launchers/${id}`, {
+                    credentials: "include"
+                })
                 const result = await response.json()
                 setData(result.launcher)
                 if (!response.ok) {
@@ -41,6 +43,7 @@ function OneLauncher() {
 
             const response = await fetch(`http://localhost:8000/api/launchers/${id}`, {
                 method: "DELETE",
+                credentials: "include",
                 headers: {
                     "content-type": "application/json"
                 }

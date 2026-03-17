@@ -7,6 +7,7 @@ function RegisterPage() {
         email: "",
         user_type:""
     })
+    console.log(data)
     const [load, setLoad] = useState(false)
     const [err, setErr] = useState("")
 
@@ -23,6 +24,9 @@ function RegisterPage() {
             const response = await fetch('http://localhost:8000/api/auth/register/create', {
                 method: "POST",
                 credentials: "include",
+                headers: {
+                    "content-type": "application/json"
+                },
                 body: JSON.stringify(data)
             })
 
@@ -32,6 +36,7 @@ function RegisterPage() {
             }            
 
         } catch (err) {
+            throw new Error(err.message)
             setErr(err.message)
         }finally {
            setLoad(false)

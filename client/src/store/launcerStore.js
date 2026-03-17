@@ -20,7 +20,9 @@ export const useLaunchers = create((set) => ({
         try {
             set({ isLoading: true })
 
-            const response = await fetch('http://localhost:8000/api/launchers')
+            const response = await fetch('http://localhost:8000/api/launchers', {
+                credentials: "include"
+            })
             const result = await response.json()
             const data = result.launchers
             console.log([...data])

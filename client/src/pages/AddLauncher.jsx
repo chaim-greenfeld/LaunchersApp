@@ -21,6 +21,7 @@ function AddLauncher() {
 
             const response = await fetch(`http://localhost:8000/api/launchers/`, {
                 method: 'POST',
+                credentials: "include",
                 headers: {
                     'content-type': "application/json"
                 },
