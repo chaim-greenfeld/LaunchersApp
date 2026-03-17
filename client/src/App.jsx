@@ -7,17 +7,19 @@ import OneLauncher from './pages/OneLauncher'
 import AddLauncher from './pages/AddLauncher'
 import ProtectedRoute from './components/ProtectedRoute'
 import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
 function App() {
 
   return (
     <>
-    {/* <RegisterPage/> */}
+    <RegisterPage/>
       <Navbar />
       <Routes>
         <Route path='/launcher/:id' element={<OneLauncher />} />
           <Route path='/' element={<HomePage />} />
         <Route path='/add' element={<AddLauncher />} />
       </Routes>
+      <LoginPage/>
     </>
   )
 }

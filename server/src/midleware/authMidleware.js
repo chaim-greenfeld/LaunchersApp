@@ -13,6 +13,9 @@ export function verifyToken(req, res, next) {
         }
         
         const decoded = jwt.verify(token, JWT_SECRET)
+        if(decoded.user_type !== 'admin' && decoded.user_type !== "intelligence" && decoded.user_type !== "airforce") {
+            return res.status(401).json({msg: "No permission"})
+        }
         req.user = decoded
         next()
     }catch (err) {

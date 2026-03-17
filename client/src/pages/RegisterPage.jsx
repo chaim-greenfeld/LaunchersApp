@@ -7,12 +7,35 @@ function RegisterPage() {
         email: "",
         user_type:""
     })
+    const [load, setLoad] = useState(false)
+    const [err, setErr] = useState("")
+
     function handleChange(e) {
         const {name, value} = e.target
         setData({...data, [name]: value})
     }
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.prevenDefault()
+
+        try {
+            setLoad(true)
+
+            const response = await fetch('http://localhost:8000/api/auth/register/create', {
+                method: "POST",
+                credentials: "include",
+                body: JSON.stringify(data)
+            })
+
+            const result = await response.json()
+            if (!response.ok) {
+                throw new Error(`${result.msg}`)
+            }            
+
+        } catch (err) {
+            setErr(err.message)
+        }finally {
+           setLoad(false)
+        }
 
     }
 
@@ -36,7 +59,8 @@ function RegisterPage() {
             </div>
             <button type='submit'>Create User</button>
   
-
+        {load && <p>Loading...</p>}
+        {err && <p>{err}</p>}
         </form>
     )
 }

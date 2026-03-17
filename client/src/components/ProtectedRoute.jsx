@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 function ProtectedRoute({user, permissions, children}) {
