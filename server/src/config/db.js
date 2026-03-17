@@ -17,6 +17,9 @@ export async function initMongo() {
         console.log('connected to mongo')
         mongoConn = mongoClient.db(DB_NAME)
         console.log('connected to mongo Data Base')
+        const usersCollection = mongoConn.collection('users')
+        await usersCollection.createIndex({username: 1}, {unique: true})
+        console.log('in users collection the username is unique')
     }catch(err){
         console.log(err.message)
     }

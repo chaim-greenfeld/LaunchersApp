@@ -5,14 +5,17 @@ import dotenv from 'dotenv'
 
 import {initMongo, getMongoConn} from './src/config/db.js'
 import launchersRouter from './src/routers/launchersRouter.js'
+import authRouter from './src/routers/authRouter.js'
+import cookieParser from 'cookie-parser'
 dotenv.config()
 
 const app = express()
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({origin: " http://localhost:5173/", credentials: true}))
 app.use(morgan("tiny"))
+app.use(cookieParser())
 
 app.use(async (req, res, next) => {
     try {
@@ -24,10 +27,8 @@ app.use(async (req, res, next) => {
 })
 // =============================
 
-
 app.use('/api/launchers', launchersRouter)
-
-
+app.use('/api/auth', authRouter)
 
 // =============================
 
